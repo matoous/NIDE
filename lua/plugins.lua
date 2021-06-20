@@ -25,6 +25,8 @@ require"packer".startup(function(use)
   use "folke/lsp-trouble.nvim"
   -- See lsp status in status bar
   use "nvim-lua/lsp-status.nvim"
+  -- Treesitter
+  use "nvim-treesitter/nvim-treesitter"
   -- Theme
   use "marko-cerovac/material.nvim"
   -- Quotes and paranthesis made simple
@@ -85,9 +87,12 @@ require"packer".startup(function(use)
   use "cespare/vim-toml"
   -- Icons for completions
   use "onsails/lspkind-nvim"
+  -- Create colors for LSP
+  use "folke/lsp-colors.nvim"
 end)
 
 -- import individual plugin settings
+require('plugins.bufferline')
 require('plugins.compe')
 require('plugins.gitsigns')
 require('plugins.lspinstall')
@@ -99,9 +104,9 @@ require('plugins.symbols-outline')
 require('plugins.telescope')
 require('plugins.toggleterm')
 require('plugins.tree')
+require('plugins.treesitter')
 require('plugins.trouble')
 require('plugins.zen-mode')
-require('plugins.bufferline')
 
 -- disable git blamme by default
 vim.g.gitblame_enabled = 0
