@@ -1,5 +1,7 @@
 # NIDE - The Nvim IDE
 
+![screen](/media/screenshot.png)
+
 [Neovim](https://github.com/neovim/neovim) configuration that takes full advantage
 of language server protocol and Lua scripting (available since version `0.5`).
 
