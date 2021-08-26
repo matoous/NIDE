@@ -9,5 +9,3 @@ require"trouble".setup {
   },
 }
 
-vim.api.nvim_set_keymap("n", "<leader>tr", "<cmd>Trouble<cr>", {silent = true, noremap = true})
-

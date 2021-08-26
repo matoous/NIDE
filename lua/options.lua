@@ -45,7 +45,6 @@ opt.signcolumn = 'yes' -- show sign column (column of the line number)
 opt.mouse = 'nv' -- enable mouse under normal and visual mode
 opt.showmatch = true -- show bracket match
 opt.showcmd = true -- show command in bottom bar
-opt.cmdheight = 2 -- height of :command line
 opt.wildmenu = true -- wildmenu, auto complete for commands
 opt.wildmode = { 'longest', 'full' }
 opt.splitright = true -- split to right

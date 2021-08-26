@@ -1,3 +1,4 @@
+-- TODO: remove, unused
 require"zen-mode".setup {
   window = { backdrop = 1, options = { signcolumn = "no" } },
   plugins = { tmux = true },

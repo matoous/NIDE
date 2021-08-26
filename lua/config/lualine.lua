@@ -7,14 +7,15 @@ local function lsp_servers_status()
   local client_names = {}
   for _, client in pairs(clients) do table.insert(client_names, client.name) end
 
-  return icons.get("zap") .. " " .. table.concat(client_names, "|")
+  -- return icons.get("zap") .. " " .. table.concat(client_names, "|")
+  return table.concat(client_names, "|")
 end
 
 require("lualine").setup {
-  options = { theme = "material-nvim", section_separators = '', component_separators = '' },
+  options = { theme = "catppuccino", section_separators = '', component_separators = '' },
   sections = {
     lualine_a = { "mode" },
-    lualine_b = { { "branch", icon = icons.get("git-branch") }, { "diff", colored = false } },
+    lualine_b = { { "branch", icon = icons.get("git-branch") }, { "diff", colored = false }},
     lualine_c = { { "filename", path = 1 } },
     lualine_x = {
       {
@@ -25,13 +26,14 @@ require("lualine").setup {
     lualine_y = {
       {
         "encoding",
+        -- show encoding only if not utf-8
         condition = function()
-          -- when filencoding="" lualine would otherwise report utf-8 anyways
           return vim.bo.fileencoding and #vim.bo.fileencoding > 0 and vim.bo.fileencoding ~= "utf-8"
         end,
       },
       {
         "fileformat",
+        -- show fileformat only if not unix
         condition = function() return vim.bo.fileformat ~= "unix" end,
         icons_enabled = false,
       },

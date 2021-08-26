@@ -1,5 +1,4 @@
-local remap = vim.api.nvim_set_keymap
-
+local wk = require("which-key")
 require("compe").setup({
   enabled              = true,
   documentation        = true,
@@ -9,7 +8,6 @@ require("compe").setup({
   source_timeout       = 200,
   incomplete_delay     = 400,
   allow_prefix_unmatch = false,
-
   source = {
     path     = true,
     calc     = true,
@@ -33,14 +31,15 @@ local check_back_space = function()
     end
 end
 
+-- TODO: snippets currently disabled, try them again?
 -- Use (s-)tab to:
 --- move to prev/next item in completion menuone
 --- jump to prev/next snippet's placeholder
 _G.tab_complete = function()
   if vim.fn.pumvisible() == 1 then
     return t "<C-n>"
-  elseif vim.fn.call("vsnip#available", {1}) == 1 then
-    return t "<Plug>(vsnip-expand-or-jump)"
+  -- elseif vim.fn.call("vsnip#available", {1}) == 1 then
+  --   return t "<Plug>(vsnip-expand-or-jump)"
   elseif check_back_space() then
     return t "<Tab>"
   else
@@ -50,17 +49,23 @@ end
 _G.s_tab_complete = function()
   if vim.fn.pumvisible() == 1 then
     return t "<C-p>"
-  elseif vim.fn.call("vsnip#jumpable", {-1}) == 1 then
-    return t "<Plug>(vsnip-jump-prev)"
+  -- elseif vim.fn.call("vsnip#jumpable", {-1}) == 1 then
+  --   return t "<Plug>(vsnip-jump-prev)"
   else
     -- If <S-Tab> is not working in your terminal, change it to <C-h>
     return t "<S-Tab>"
   end
 end
 
-vim.api.nvim_set_keymap("i", "<Tab>", "v:lua.tab_complete()", {expr = true})
-vim.api.nvim_set_keymap("s", "<Tab>", "v:lua.tab_complete()", {expr = true})
-vim.api.nvim_set_keymap("i", "<S-Tab>", "v:lua.s_tab_complete()", {expr = true})
-vim.api.nvim_set_keymap("s", "<S-Tab>", "v:lua.s_tab_complete()", {expr = true})
-vim.api.nvim_set_keymap("i", "<A-CR>", "compe#confirm()", {silent = true, noremap = true, expr = true })
+wk.register({
+  ["<Tab>"] = {"v:lua.tab_complete()", "Next completion"},
+  ["<S-Tab>"] = {"v:lua.s_tab_complete()", "Previous completion"},
+}, { silent = true, noremap = true, expr = true, mode = "i" })
+wk.register({
+  ["<Tab>"] = {"v:lua.tab_complete()", "Next completion"},
+  ["<S-Tab>"] = {"v:lua.s_tab_complete()", "Previous completion"},
+}, { silent = true, noremap = true, expr = true, mode = "s" })
+wk.register({
+  ["<A-CR>"] = {"compe#confirm()", "Confirm completion" },
+}, { silent = true, noremap = true, expr = true, mode = "i" })
 
