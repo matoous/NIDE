@@ -5,14 +5,7 @@ local wk = require("which-key")
 vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = "single" })
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities.textDocument.completion.completionItem.snippetSupport = true
-capabilities.textDocument.completion.completionItem.resolveSupport = {
-  properties = {
-    'documentation',
-    'detail',
-    'additionalTextEdits',
-  }
-}
+capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
 
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
  vim.lsp.diagnostic.on_publish_diagnostics, {
@@ -84,7 +77,7 @@ require('lspinstall').setup()
 for _, server in ipairs(servers) do
   nvim_lsp[server].setup {
     on_attach = on_attach,
-    -- capabilities = capabilities,
+    capabilities = capabilities,
     flags = {
       debounce_text_changes = 150,
     }

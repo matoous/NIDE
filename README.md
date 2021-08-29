@@ -52,3 +52,9 @@ This configuration is heavily opinionated and made to my liking.
 - `<leader>f*` for **f**inding stuff such as files, commands, code, commits, buffers, etc.
 - ...
 
+## TODO
+
+- Consider using https://github.com/kristijanhusak/vim-dadbod-ui for database access.
+- https://github.com/brooth/far.vim for replacing accross multiple files.
+- https://github.com/ray-x/lsp_signature.nvim
+
