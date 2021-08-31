@@ -15,6 +15,7 @@ wk.register({
       o = { ":SymbolsOutline<CR>", "Toggle symbols outline" },
       t = { "<cmd>NvimTreeToggle<CR>", "Toggle tree" },
       r = { "<cmd>Trouble<CR>", "Toggle trouble" },
+      b = { "<cmd>GitBlameToggle<CR>", "Toggle git blame" },
     },
     f = {
       name = "Find stuff",

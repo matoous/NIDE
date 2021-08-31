@@ -1,6 +1,7 @@
 local icons = require("nvim-nonicons")
 local nvim_lsp = require("lspconfig")
 local wk = require("which-key")
+local lspinstall = require("lspinstall")
 
 vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = "single" })
 
@@ -64,16 +65,9 @@ local on_attach = function(client, bufnr)
   -- buf_set_keymap('n', '<space>q', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
 end
 
-local servers = {
-  "python",
-  "denols",
-  "dockerls",
-  "gopls",
-  "rust_analyzer",
-  "tsserver",
-}
+lspinstall.setup()
+local servers = lspinstall.installed_servers();
 
-require('lspinstall').setup()
 for _, server in ipairs(servers) do
   nvim_lsp[server].setup {
     on_attach = on_attach,

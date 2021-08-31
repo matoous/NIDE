@@ -8,7 +8,10 @@ end
 require("packer").startup(function(use)
   -- Lua plugin manager
   -- https://github.com/wbthomason/packer.nvim
-  use({"wbthomason/packer.nvim"})
+  use({
+    "wbthomason/packer.nvim",
+    event = "VimEnter",
+  })
 
   -- Theme
   -- https://github.com/Pocco81/Catppuccino.nvim
@@ -132,10 +135,6 @@ require("packer").startup(function(use)
   use({
     "f-person/git-blame.nvim",
     event = { "BufReadPre", "BufNewFile" },
-    config = function()
-      -- disable git blamme by default
-      vim.g.gitblame_enabled = 0
-    end,
     opt = true,
   })
 
@@ -269,3 +268,5 @@ require("packer").startup(function(use)
 end)
 
 
+-- disable git blamme by default
+vim.g.gitblame_enabled = 0
