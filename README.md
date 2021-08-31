@@ -3,54 +3,27 @@
 ![screen](/media/screenshot.png)
 
 [Neovim](https://github.com/neovim/neovim) configuration that takes full advantage
-of language server protocol and Lua scripting (available since version `0.5`).
+of language server protocol, treesitter, and Lua scripting (available since Neovim version `0.5`).
 
 ## Philosophy
 
 While this configuration includes a lot of plugins and aims to provide feature rich development
 environment I try to keep the amount of configuration under control and remove everything
-that is not necessary.
+that's unnecessary. 
 
 This configuration is heavily opinionated and made to my liking.
 
-## What's included
+## Plugins
 
-- LSP based completion, highlight, code actions, diagnostics, navigation, and more
-- adjusted look with material theme, bufferline, and lualine
-- integrated terminal
-- file system tree and symbols outline for easy navigation
-- fuzzy searching over almost anything using [telescope](https://github.com/nvim-telescope/telescope.nvim)
-- ...
+### [packer.nvim](https://github.com/wbthomason/packer.nvim)
 
-### Supported languages
+Package manager written in lua the supports expressive config, dependency graph, lazy loading and much more.
 
-- LSP:
-  - bash
-  - css
-  - deno
-  - docker
-  - go
-  - html
-  - json
-  - python
-  - rust
-  - terraform
-  - typescript
-  - vim
-  - yaml
-- other:
-  - jsonnet
-  - rego
-  - toml
+### [Catppuccino.nvim](https://github.com/Pocco81/Catppuccino.nvim)
 
-## Bindings
-
-- `<leader>t*` for **t**oggling things such as git blame, file tree, symbols outline, etc.
-- `<leader>s*` for **s**howing available actions for code such as code actions, diagnostics, definition preview,
-  and more
-- `<leader>c*` for code a**c**tions such as formatting, renaming, and more
-- `<leader>f*` for **f**inding stuff such as files, commands, code, commits, buffers, etc.
-- ...
+My (currently) favorite theme that supports all plugins, has high contract, and stands out.
+Catpuccino comes with 3 themes, I personally use `neon_latter` but if you are considering
+switching from material theme `dark_catppuccino` might be more to your liking.
 
 ## TODO
 
