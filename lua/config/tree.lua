@@ -29,7 +29,6 @@ vim.g.nvim_tree_icons = {
        }
      }
 vim.g.nvim_tree_group_empty = 1
-vim.g.nvim_tree_add_trailing = 1
 vim.g.nvim_tree_auto_open = 1
 vim.g.nvim_tree_auto_close = 1
 vim.g.nvim_tree_highlight_opened_files = 1
