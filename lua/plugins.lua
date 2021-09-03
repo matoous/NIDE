@@ -39,13 +39,14 @@ require("packer").startup(function(use)
     end,
   })
 
-  -- line with currently open buffers
-  -- https://github.com/akinsho/bufferline.nvim
+  -- Top bar with currently open buffers
+  -- https://github.com/romgrk/jarbar.nvim
   use({
-    "akinsho/bufferline.nvim",
+    "romgrk/barbar.nvim",
     requires = "yamatsum/nvim-nonicons",
+    event = "BufWinEnter",
     config = function()
-      require("config.bufferline")
+      require("config.barbar")
     end,
   })
 

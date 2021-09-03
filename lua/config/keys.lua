@@ -30,8 +30,9 @@ wk.register({
     },
   },
   ["<C-k>"] = { ":wincmd k<CR>", "Focus pane to the top" },
-  ["<A-TAB>"] = { "<Cmd>BufferLineCycleNext<CR>", "Next bufferline tab" },
-  ["<S-A-TAB>"] = { "<Cmd>BufferLineCyclePrev<CR>", "Previous bufferline tab" },
+  ["<A-TAB>"] = { "<Cmd>BufferNext<CR>", "Next buffer tab" },
+  ["<S-A-TAB>"] = { "<Cmd>BufferPrevious<CR>", "Previous buffer tab" },
+  ["<A-w>"] = { "<Cmd>BufferClose<CR>", "Close buffer tab" },
   -- alt + enter code actions like in Goland, TODO: doesn't work right now, changes window fullscreen mode
   ["<A-CR>"] = { "<Cmd>Telescope lsp_code_actions<CR>", "Code actions" },
 })
