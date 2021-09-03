@@ -88,6 +88,13 @@ require("packer").startup(function(use)
     end,
   })
 
+  -- Navigate between matching treesitter items using %
+  -- https://github.com/andymass/vim-matchup
+  use({
+    "andymass/vim-matchup",
+    opt = true,
+  })
+
   -- Nvim Treesitter configurations and abstraction layer
   -- https://github.com/nvim-treesitter/nvim-treesitter
   use({

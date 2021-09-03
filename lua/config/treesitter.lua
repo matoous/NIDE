@@ -1,12 +1,12 @@
-require'nvim-treesitter.configs'.setup {
+require('nvim-treesitter.configs').setup {
     ensure_installed = "maintained",
     highlight = {
         enable = true,
     },
-    incremental_selection = {
+    indent = {
         enable = true,
     },
-    indent = {
+    matchup = {
         enable = true,
     },
 }
