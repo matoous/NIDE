@@ -50,13 +50,6 @@ require("packer").startup(function(use)
     end,
   })
 
-  -- highlight other uses of word under symbol
-  -- https://github.com/RRethy/vim-illuminate
-  use({
-    "RRethy/vim-illuminate",
-    event = { "BufReadPre", "BufNewFile" },
-  })
-
   -- automatically adjust shiftwidth and expandtab based on current file
   -- https://github.com/tpope/vim-sleuth
   use({
@@ -103,9 +96,18 @@ require("packer").startup(function(use)
     config = function()
       require("config.treesitter")
     end,
+    run = ":TSUpdate",
   })
 
-    -- Status line
+  -- Highlight other uses of word under symbol
+  -- https://github.com/RRethy/vim-illuminate
+  use({
+    "RRethy/vim-illuminate",
+    requires = { "nvim-treesitter/nvim-treesitter" },
+    event = "BufRead",
+  })
+
+  -- Status line
   -- https://github.com/hoob3rt/lualine.nvim
   use({
     "hoob3rt/lualine.nvim",
@@ -122,6 +124,7 @@ require("packer").startup(function(use)
   -- Open terminal window from within vim
   use({
     "akinsho/nvim-toggleterm.lua",
+    event = "BufWinEnter",
     config = function()
       require("config.toggleterm")
     end,
@@ -182,6 +185,7 @@ require("packer").startup(function(use)
   })
 
   -- Tree file explorer
+  -- https://github.com/kyazdani42/nvim-tree.lua
   use({
     "kyazdani42/nvim-tree.lua",
     requires = "yamatsum/nvim-nonicons",
@@ -191,6 +195,7 @@ require("packer").startup(function(use)
   })
 
   -- icons
+  -- https://github.com/yamatsum/nvim-nonicons
   use({
     "yamatsum/nvim-nonicons",
     {
@@ -199,10 +204,11 @@ require("packer").startup(function(use)
       config = function()
         require("nvim-web-devicons").setup({ default = true })
       end,
-    },  
+    },
   })
 
   -- Gutter git signs
+  -- https://github.com/lewis6991/gitsigns.nvim
   use({
     "lewis6991/gitsigns.nvim",
     requires = "nvim-lua/plenary.nvim",
@@ -239,12 +245,12 @@ require("packer").startup(function(use)
     end,
     requires = {
       { "hrsh7th/cmp-buffer", after = "nvim-cmp" },
-      { "hrsh7th/cmp-nvim-lsp" },
+      { "hrsh7th/cmp-nvim-lsp", after = "nvim-cmp" },
       { "hrsh7th/cmp-calc", after = "nvim-cmp" },
       { "hrsh7th/cmp-path", after = "nvim-cmp" },
+      { "rafamadriz/friendly-snippets", after = "nvim-cmp" },
       {
         "hrsh7th/vim-vsnip",
-        event = "InsertCharPre",
         requires = {
           { "hrsh7th/cmp-vsnip" },
         },
@@ -252,7 +258,7 @@ require("packer").startup(function(use)
           vim.g.vsnip_snippet_dir = os.getenv "HOME" .. "/.config/nvim/snippets"
         end,
       },
-      { 
+      {
         "L3MON4D3/LuaSnip",
         requires = {
           'saadparwaiz1/cmp_luasnip',
