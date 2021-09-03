@@ -39,10 +39,51 @@ mapping = {
   },
 }
 
+local icons = {
+   Text = "",
+   Method = "",
+   Function = "",
+   Constructor = "",
+   Field = "ﰠ",
+   Variable = "",
+   Class = "ﴯ",
+   Interface = "",
+   Module = "",
+   Property = "ﰠ",
+   Unit = "塞",
+   Value = "",
+   Enum = "",
+   Keyword = "",
+   Snippet = "",
+   Color = "",
+   File = "",
+   Reference = "",
+   Folder = "",
+   EnumMember = "",
+   Constant = "",
+   Struct = "פּ",
+   Event = "",
+   Operator = "",
+   TypeParameter = "",
+}
+
 cmp.setup({
     snippet = {
       expand = function(args)
         require("luasnip").lsp_expand(args.body)
+      end,
+    },
+    formatting = {
+      format = function(entry, vim_item)
+        -- load lspkind icons
+        vim_item.kind = string.format("%s %s", icons[vim_item.kind], vim_item.kind)
+        vim_item.menu = ({
+          nvim_lsp = "[LSP]",
+          nvim_lua = "[Lua]",
+          buffer = "[BUF]",
+        })[entry.source.name]
+
+        return vim_item
       end,
     },
     completion = {
