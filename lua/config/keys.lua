@@ -27,6 +27,7 @@ wk.register({
       h = { "<cmd>Telescope help_tags<CR>", "Find help" },
       k = { "<cmd>Telescope keymaps<CR>", "Find keymap entry" },
       s = { "<cmd>Telescope lsp_document_symbols<CR>", "Find symbols" },
+      r = { "<cmd>Telescope lsp_references<CR>", "Find references" },
     },
   },
   ["<C-k>"] = { ":wincmd k<CR>", "Focus pane to the top" },
