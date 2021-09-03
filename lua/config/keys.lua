@@ -13,7 +13,7 @@ wk.register({
     t = {
       b = { "<cmd>GitBlameToggle<CR>", "Toggle git blame" },
       o = { ":SymbolsOutline<CR>", "Toggle symbols outline" },
-      r = { "<cmd>Trouble<CR>", "Toggle trouble" },
+      r = { "<cmd>TroubleToggle<CR>", "Toggle trouble" },
       s = { ":setlocal spell!<CR>", "Toggle spell check" },
       t = { "<cmd>NvimTreeToggle<CR>", "Toggle tree" },
     },
