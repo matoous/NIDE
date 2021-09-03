@@ -16,7 +16,7 @@ require("lualine").setup {
   sections = {
     lualine_a = { "mode" },
     lualine_b = { { "branch", icon = icons.get("git-branch") }, { "diff", colored = false }},
-    lualine_c = { { "filename", path = 1 } },
+    lualine_c = { { "filename", path = 1 }, { 'location' } },
     lualine_x = {
       {
         "diagnostics",
