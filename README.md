@@ -28,6 +28,12 @@ switching from material theme `dark_catppuccino` might be more to your liking.
 ## TODO
 
 - Consider using https://github.com/kristijanhusak/vim-dadbod-ui for database access.
-- https://github.com/brooth/far.vim for replacing accross multiple files.
 - https://github.com/ray-x/lsp_signature.nvim
+- https://github.com/nvim-telescope/telescope-fzf-native.nvim
+- https://github.com/sudormrfbin/cheatsheet.nvim
 
+## Inspiration
+
+- [LunarVim](https://github.com/LunarVim/LunarVim)
+- [NvChad](https://github.com/NvChad/NvChad)
+- [nvim-ide](https://github.com/johnsci911/nvim-ide)
