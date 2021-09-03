@@ -182,6 +182,41 @@ require("packer").startup(function(use)
     -- Autosave, but in lua and better than the classic one
     -- https://github.com/Pocco81/AutoSave.nvim
     { "Pocco81/AutoSave.nvim", config = function() require("autosave").setup() end },
+    -- Search and replace accross multiple files
+    -- https://github.com/brooth/far.vim
+    "brooth/far.vim",
+    -- Motion plugin
+    -- https://github.com/ggandor/lightspeed.nvim
+    {
+      "ggandor/lightspeed.nvim",
+      event = { "BufRead" },
+    },
+  })
+
+  -- Smooth scroll
+  -- https://github.com/karb94/neoscroll.nvim
+  use({
+    "karb94/neoscroll.nvim",
+    config = function()
+      require('neoscroll').setup({})
+      require('neoscroll.config').set_mappings({
+        ["<C-u>"] = { "scroll", { "-vim.wo.scroll", "true", "150" } },
+        ["<C-d>"] = { "scroll", { "vim.wo.scroll", "true", "150" } },
+      })
+    end,
+    opt = true,
+  })
+
+  -- Find key-word comments such as todo and fixme and display them in quickfic, telescope, and trouble
+  -- https://github.com/folke/todo-comments.nvim
+  use({
+    "folke/todo-comments.nvim",
+    requires = { "nvim-lua/plenary.nvim", "nvim-telescope/telescope.nvim", "folke/lsp-trouble.nvim" },
+    event = { "BufRead" },
+    cmd = { "TodoTelescope", "TodoTrouble", "TodoQuickFix" },
+    config = function()
+      require("todo-comments").setup({})
+    end
   })
 
   -- Tree file explorer
