@@ -6,53 +6,53 @@ cmd('filetype plugin indent on')
 cmd('syntax enable')
 
 -- systematic
-opt.fileformat = 'unix'
+opt.autoread = true
+opt.backup = false -- no .bak
 opt.encoding = 'utf-8'
 opt.fileencoding = 'utf-8'
 opt.fileencodings = { 'utf-8' }
-opt.backup = false -- no .bak
+opt.fileformat = 'unix'
+opt.lazyredraw = true -- redraw only when needed
 opt.swapfile = false -- no .swap
+opt.ttyfast = true
 opt.undofile = true -- use undo file
 opt.updatetime = 300 -- time (in ms) to write to swap file
-opt.lazyredraw = true -- redraw only when needed
-opt.ttyfast = true
 
 -- buffer
-opt.expandtab = true -- expand tab
-opt.tabstop = 4 -- tab stop
-opt.softtabstop = 4 -- soft tab stop
 opt.autoindent = true -- auto indent for new line
+opt.expandtab = true -- expand tab
 opt.shiftwidth = 4 -- auto indent shift width
+opt.softtabstop = 4 -- soft tab stop
+opt.tabstop = 4 -- tab stop
 
 -- window
-opt.number = true
-opt.relativenumber = true
+opt.number = true -- show line numbers in gutter
+opt.relativenumber = true -- show them relative to cursor
 
 -- editing
-opt.whichwrap = 'b,s,<,>,[,]' -- cursor is able to move from end of line to next line
 opt.backspace = { 'indent', 'eol', 'start' } -- backspace behaviors
-opt.ignorecase = false -- search with no ignore case
-opt.hlsearch = true -- highlight search
-opt.incsearch = true
-opt.ignorecase = true -- ignore case when searching
-opt.smartcase = true
-opt.inccommand = 'nosplit' -- live substitute preview
-opt.completeopt = { 'menuone', 'noinsert', 'noselect' }
-opt.hidden = true
-opt.ruler = true -- show ruler line
+opt.clipboard = 'unnamedplus' -- system clipboard by default
 opt.colorcolumn = { 120 } -- display a color column when line is longer than 120 chars
-opt.signcolumn = 'yes' -- show sign column (column of the line number)
+opt.completeopt = { 'menuone', 'noinsert', 'noselect' }
+opt.grepprg = 'rg --vimgrep --smart-case --follow' -- user rigrep for search
+opt.hidden = true
+opt.hlsearch = true -- highlight search
+opt.ignorecase = true -- ignore case when searching
+opt.inccommand = 'nosplit' -- live substitute preview
+opt.incsearch = true -- search as you type
 opt.mouse = 'nv' -- enable mouse under normal and visual mode
-opt.showmatch = true -- show bracket match
+opt.ruler = true -- show ruler line
+opt.shortmess:append('c') -- status line e.g. CTRL+G
 opt.showcmd = true -- show command in bottom bar
+opt.showmatch = true -- show bracket match
+opt.signcolumn = 'yes' -- show sign column (column of the line number)
+opt.smartcase = true -- search case-sensitive only if search query contains uppercase
+opt.splitbelow = true -- split to below
+opt.splitright = true -- split to right
+opt.visualbell = true -- visual bell instead of sound
+opt.whichwrap = 'b,s,<,>,[,]' -- cursor is able to move from end of line to next line
 opt.wildmenu = true -- wildmenu, auto complete for commands
 opt.wildmode = { 'longest', 'full' }
-opt.splitright = true -- split to right
-opt.splitbelow = true -- split to below
-opt.shortmess:append('c') -- status line e.g. CTRL+G
-opt.visualbell = true -- visual bell instead of sound
-opt.clipboard = 'unnamedplus' -- system clipboard by default
-opt.grepprg = 'rg --vimgrep --smart-case --follow' -- user rigrep for search
 
 -- history
 opt.history = 10000

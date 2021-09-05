@@ -63,6 +63,7 @@ local on_attach = function(client, bufnr)
   -- buf_set_keymap('n', '[d', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
   -- buf_set_keymap('n', ']d', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
   -- buf_set_keymap('n', '<space>q', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
+  vim.notify(client.name .. ": attached LSP server", "info")
 end
 
 lspinstall.setup()
