@@ -33,3 +33,8 @@ vim.g.nvim_tree_auto_open = 1
 vim.g.nvim_tree_auto_close = 1
 vim.g.nvim_tree_highlight_opened_files = 1
 vim.g.nvim_tree_ignore = { '.git', 'node_modules', '__pycache__', '.idea', 'venv' }
+
+require("nvim-tree.events").on_nvim_tree_ready(function()
+  vim.cmd("NvimTreeRefresh")
+end)
+

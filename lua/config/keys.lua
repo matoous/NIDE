@@ -34,7 +34,6 @@ wk.register({
   ["<A-TAB>"] = { "<Cmd>BufferNext<CR>", "Next buffer tab" },
   ["<S-A-TAB>"] = { "<Cmd>BufferPrevious<CR>", "Previous buffer tab" },
   ["<A-w>"] = { "<Cmd>BufferClose<CR>", "Close buffer tab" },
-  -- alt + enter code actions like in Goland, TODO: doesn't work right now, changes window fullscreen mode
   ["<A-CR>"] = { "<Cmd>Telescope lsp_code_actions<CR>", "Code actions" },
 })
 
