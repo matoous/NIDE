@@ -141,6 +141,13 @@ require("packer").startup(function(use)
     end,
   })
 
+  use({
+    "windwp/nvim-autopairs",
+    config = function()
+      require("config.autopairs")
+    end,
+  })
+
   -- Togglable blame info for current line
   -- https://github.com/f-person/git-blame.nvim
   use({
@@ -278,26 +285,27 @@ require("packer").startup(function(use)
     config = function()
       require("config.cmp")
     end,
+    wants = {
+      "cmp-nvim-lsp",
+      "cmp_luasnip",
+      "cmp-buffer",
+      "cmp-path",
+      "friendly-snippets",
+    },
     requires = {
       { "hrsh7th/cmp-buffer", after = "nvim-cmp" },
       { "hrsh7th/cmp-nvim-lsp", after = "nvim-cmp" },
-      { "hrsh7th/cmp-calc", after = "nvim-cmp" },
       { "hrsh7th/cmp-path", after = "nvim-cmp" },
       { "rafamadriz/friendly-snippets", after = "nvim-cmp" },
-      {
-        "hrsh7th/vim-vsnip",
-        requires = {
-          { "hrsh7th/cmp-vsnip" },
-        },
-        config = function()
-          vim.g.vsnip_snippet_dir = os.getenv "HOME" .. "/.config/nvim/snippets"
-        end,
-      },
       {
         "L3MON4D3/LuaSnip",
         requires = {
           'saadparwaiz1/cmp_luasnip',
+          "rafamadriz/friendly-snippets",
         },
+        config = function()
+          require("config.luasnip")
+        end,
       },
       {
         -- Icons for completions

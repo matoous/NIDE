@@ -1,6 +1,7 @@
 local wk = require("which-key")
 local cmp = require("cmp")
 local luasnip = require("luasnip")
+local npairs = require("nvim-autopairs.completion.cmp")
 
 local check_back_space = function()
   local col = vim.fn.col "." - 1
@@ -12,19 +13,23 @@ local t = function(str)
 end
 
 -- supertab-like mapping
-mapping = {
-  ["<tab>"] = cmp.mapping(function(fallback)
+local mapping = {
+  ["<CR>"] = cmp.mapping.confirm(),
+  ["<Tab>"] = cmp.mapping(function(fallback)
     if vim.fn.pumvisible() == 1 then
       vim.fn.feedkeys(t("<C-n>"), "n")
     elseif luasnip.expand_or_jumpable() then
       vim.fn.feedkeys(t("<Plug>luasnip-expand-or-jump"), "")
     elseif check_back_space() then
-      vim.fn.feedkeys(t("<tab>"), "n")
+      vim.fn.feedkeys(t("<Tab>"), "n")
     else
       fallback()
     end
-  end, { "i", "s" }),
-  ["<S-tab>"] = cmp.mapping(function(fallback)
+  end, {
+    "i",
+    "s",
+  }),
+  ["<S-Tab>"] = cmp.mapping(function(fallback)
     if vim.fn.pumvisible() == 1 then
       vim.fn.feedkeys(t("<C-p>"), "n")
     elseif luasnip.jumpable(-1) then
@@ -32,11 +37,10 @@ mapping = {
     else
       fallback()
     end
-  end, { "i", "s" }),
-  ["<C-y>"] = cmp.mapping.confirm {
-    select = true,
-    behavior = cmp.ConfirmBehavior.Replace,
-  },
+  end, {
+    "i",
+    "s",
+  }),
 }
 
 local icons = {
@@ -90,12 +94,16 @@ cmp.setup({
       completeopt = "menu,menuone,noselect",
     },
     sources = {
-      { name = "luasnip" },
       { name = "nvim_lsp" },
-      { name = "vsnip" },
+      { name = "luasnip" },
       { name = "buffer" },
       { name = "path" },
-      { name = "calc" },
     },
     mapping = mapping,
+})
+
+npairs.setup({
+  map_cr = true,
+  map_complete = true,
+  auto_select = true,
 })
