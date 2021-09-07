@@ -12,7 +12,7 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
  vim.lsp.diagnostic.on_publish_diagnostics, {
    underline = true,
    virtual_text = {
-     spacing = 0,
+     spacing = 2,
      severity_limit = "Warning",
      prefix = '⚡',
    },
@@ -41,28 +41,23 @@ local on_attach = function(client, bufnr)
     ["<leader>"] = {
       s = {
         name = "Show",
-        f = {'<Cmd>:Lspsaga lsp_finder<CR>', "Show finder for current symbol"},
-        a = {'<cmd>:Lspsaga code_action<CR>', "Show code actions"},
-        p = {'<cmd>:Lspsaga preview_definition<CR>', "Show preview of definition"},
+        f = {"<cmd>lua require('lspsaga.provider').lsp_finder()<CR>", "Show finder for current symbol"},
+        a = {"<cmd>lua require('lspsaga.codeaction').code_action()<CR>", "Show code actions"},
+        p = {"<cmd>lua require('lspsaga.provider').preview_definition()<CR>", "Show preview of definition"},
         e = {'<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', "Show errors"},
         d = {'<cmd>lua vim.lsp.buf.type_definition()<CR>', "Show type definition"},
       },
       m = {
         name = "Make",
-        r = {'<cmd>lua vim.lsp.buf.rename()<CR>', "Rename symbol"},
+        r = {"<cmd>lua require('lspsaga.rename').rename()<CR>", "Rename symbol"},
         f = {"<cmd>lua vim.lsp.buf.formatting()<CR>", "Format code"},
       },
     },
   }, { buffer=bufnr, mode = 'n', noremap = true, silent = true })
 
-  -- other options from: https://raygervais.dev/articles/2021/3/neovim-lsp/
-  -- local opts = { noremap=true, silent=true }
-  -- buf_set_keymap('n', '<space>wa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', opts)
-  -- buf_set_keymap('n', '<space>wr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', opts)
   -- buf_set_keymap('n', '<space>wl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', opts)
   -- buf_set_keymap('n', '[d', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
   -- buf_set_keymap('n', ']d', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
-  -- buf_set_keymap('n', '<space>q', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
   vim.notify(client.name .. ": attached LSP server", "info")
 end
 
