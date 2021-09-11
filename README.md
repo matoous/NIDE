@@ -33,10 +33,15 @@ switching from material theme `dark_catppuccino` might be more to your liking.
 - https://github.com/sudormrfbin/cheatsheet.nvim
 - https://github.com/nacro90/numb.nvim
 - https://github.com/pechorin/any-jump.vim
-- https://github.com/rcarriga/nvim-notify
+
+## Plugins to watch
+
+- [rcarriga/nvim-notify](https://github.com/rcarriga/nvim-notify) provides nice notifications but I didn't find much
+  use for it yet. Will be interesting to see what people come up with when it comes to integrating this plugin.
 
 ## Inspiration
 
 - [LunarVim](https://github.com/LunarVim/LunarVim)
 - [NvChad](https://github.com/NvChad/NvChad)
 - [nvim-ide](https://github.com/johnsci911/nvim-ide)
+

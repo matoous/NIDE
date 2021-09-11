@@ -27,7 +27,7 @@ opt.tabstop = 4 -- tab stop
 
 -- window
 opt.number = true -- show line numbers in gutter
-opt.relativenumber = true -- show them relative to cursor
+opt.relativenumber = true
 
 -- editing
 opt.backspace = { 'indent', 'eol', 'start' } -- backspace behaviors
