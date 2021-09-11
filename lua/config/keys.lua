@@ -30,6 +30,9 @@ wk.register({
       r = { "<cmd>Telescope lsp_references<CR>", "Find references" },
     },
   },
+  g = {
+    x = { '<Cmd>call jobstart(["open", expand("<cfile>")], {"detach": v:true})<CR>', "Open urel under cursor in browser"},
+  },
   ["<C-k>"] = { ":wincmd k<CR>", "Focus pane to the top" },
   ["<A-TAB>"] = { "<Cmd>BufferNext<CR>", "Next buffer tab" },
   ["<S-A-TAB>"] = { "<Cmd>BufferPrevious<CR>", "Previous buffer tab" },
