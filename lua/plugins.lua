@@ -1,5 +1,6 @@
 local fn = vim.fn
 local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
+
 if fn.empty(fn.glob(install_path)) > 0 then
   fn.system({'git', 'clone', 'https://github.com/wbthomason/packer.nvim', install_path})
   vim.cmd 'packadd packer.nvim'
@@ -74,6 +75,7 @@ require("packer").startup(function(use)
   })
 
   -- A pretty diagnostics, references, telescope results, quickfix, etc.
+  -- https://github.com/folke/trouble.nvim
   use({
     "folke/lsp-trouble.nvim",
     config = function()
@@ -122,6 +124,7 @@ require("packer").startup(function(use)
   })
 
   -- Open terminal window from within vim
+  -- https://github.com/akinsho/toggleterm.nvim
   use({
     "akinsho/nvim-toggleterm.lua",
     event = "BufWinEnter",
@@ -141,6 +144,8 @@ require("packer").startup(function(use)
     end,
   })
 
+  -- Matching brackets
+  -- https://github.com/windwp/nvim-autopairs
   use({
     "windwp/nvim-autopairs",
     config = function()
@@ -154,8 +159,17 @@ require("packer").startup(function(use)
     "f-person/git-blame.nvim",
     event = { "BufReadPre", "BufNewFile" },
     opt = true,
+    cmd = "GitBlameToggle",
   })
 
+  -- Toggle comments
+  -- https://github.com/b3nj5m1n/kommentary
+  use({
+      "b3nj5m1n/kommentary",
+      event = { "BufReadPre", "BufNewFile" },
+      opt = true,
+      keys = { "gc", "gcc" },
+  })
 
   -- Utils
   use({
@@ -164,13 +178,6 @@ require("packer").startup(function(use)
     {
       "tpope/vim-surround",
       event = { "BufReadPre", "BufNewFile" },
-    },
-    -- Toggle comments
-    -- https://github.com/tpope/vim-commentary
-    {
-      "tpope/vim-commentary",
-      event = { "BufReadPre", "BufNewFile" },
-      opt = true,
     },
     -- Cool complementary pairs of mappings, e.g. ]e to swap with line below, etc.
     -- https://github.com/tpope/vim-unimpaired
@@ -207,11 +214,12 @@ require("packer").startup(function(use)
     config = function()
       require('neoscroll').setup({})
       require('neoscroll.config').set_mappings({
-        ["<C-u>"] = { "scroll", { "-vim.wo.scroll", "true", "150" } },
-        ["<C-d>"] = { "scroll", { "vim.wo.scroll", "true", "150" } },
+        ["<C-u>"] = { "scroll", { "-vim.wo.scroll", "true", "80" } },
+        ["<C-d>"] = { "scroll", { "vim.wo.scroll", "true", "80" } },
       })
     end,
     opt = true,
+    keys = { "<C-u>", "<C-d>" },
   })
 
   -- Find key-word comments such as todo and fixme and display them in quickfic, telescope, and trouble
@@ -273,13 +281,13 @@ require("packer").startup(function(use)
   -- https://github.com/glepnir/lspsaga.nvim
   use({
     "glepnir/lspsaga.nvim",
-    cmd = "Lspsaga",
     config = function()
       require("config.lspsaga")
     end,
   })
 
   -- Completion
+  -- https://github.com/hrsh7th/nvim-cmp
   use({
     "hrsh7th/nvim-cmp",
     config = function()
