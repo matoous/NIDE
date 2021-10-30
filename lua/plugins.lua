@@ -286,15 +286,6 @@ require("packer").startup(function(use)
     end,
   })
 
-  -- Cool popup windows for certain LSP features (definitions, references, etc.), currently in development
-  -- https://github.com/glepnir/lspsaga.nvim
-  --[[ use({
-    "glepnir/lspsaga.nvim",
-    config = function()
-      require("config.lspsaga")
-    end,
-  }) ]]
-
   -- Completion
   -- https://github.com/hrsh7th/nvim-cmp
   use({

@@ -15,6 +15,10 @@ cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done({ map_char = { tex = 
 
 -- supertab-like mapping
 local mapping = {
+  ["<C-e>"] = cmp.mapping({
+    i = cmp.mapping.close(),
+    c = cmp.mapping.close(),
+  }),
   ["<CR>"] = cmp.mapping.confirm(),
   ["<Tab>"] = cmp.mapping(function(fallback)
     if cmp.visible() then
@@ -24,12 +28,7 @@ local mapping = {
     elseif check_back_space() then
       vim.fn.feedkeys(t("<Tab>"), "n")
     else
-      local copilot_keys = vim.fn["copilot#Accept"]()
-      if copilot_keys ~= "" then
-        vim.api.nvim_feedkeys(copilot_keys, "i", true)
-      else
-        fallback()
-      end
+      fallback()
     end
   end, {
     "i",

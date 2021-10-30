@@ -2,7 +2,6 @@ vim.g.mapleader = ","
 vim.g.maplocalleader = "\\"
 
 local set_keymap = require("common").set_keymap
-local nvim_set_keymap = require("common").nvim_set_keymap
 
 set_keymap("i", "jj", "<Esc>")
 set_keymap("n", "Y", "y$")

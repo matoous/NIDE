@@ -11,6 +11,7 @@ wk.register({
       p = { "<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>", "Diagnostic previous" },
     },
     t = {
+      a = { ":Copilot disable", "Toggle copilot" }, -- Doesn't work now, just disables the copilot
       b = { "<cmd>GitBlameToggle<CR>", "Toggle git blame" },
       o = { ":SymbolsOutline<CR>", "Toggle symbols outline" },
       r = { "<cmd>TroubleToggle<CR>", "Toggle trouble" },
