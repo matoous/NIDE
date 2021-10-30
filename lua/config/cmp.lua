@@ -1,17 +1,17 @@
 local cmp = require("cmp")
 local luasnip = require("luasnip")
-local cmp_autopairs = require('nvim-autopairs.completion.cmp')
+local cmp_autopairs = require("nvim-autopairs.completion.cmp")
 
 local check_back_space = function()
-  local col = vim.fn.col "." - 1
-  return col == 0 or vim.fn.getline("."):sub(col, col):match "%s" ~= nil
+  local col = vim.fn.col(".") - 1
+  return col == 0 or vim.fn.getline("."):sub(col, col):match("%s") ~= nil
 end
 
 local t = function(str)
   return vim.api.nvim_replace_termcodes(str, true, true, true)
 end
 
-cmp.event:on( 'confirm_done', cmp_autopairs.on_confirm_done({  map_char = { tex = '' } }))
+cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done({ map_char = { tex = "" } }))
 
 -- supertab-like mapping
 local mapping = {
@@ -26,9 +26,9 @@ local mapping = {
     else
       local copilot_keys = vim.fn["copilot#Accept"]()
       if copilot_keys ~= "" then
-          vim.api.nvim_feedkeys(copilot_keys, "i", true)
+        vim.api.nvim_feedkeys(copilot_keys, "i", true)
       else
-          fallback()
+        fallback()
       end
     end
   end, {
@@ -50,61 +50,60 @@ local mapping = {
 }
 
 local icons = {
-   Text = "",
-   Method = "",
-   Function = "",
-   Constructor = "",
-   Field = "ﰠ",
-   Variable = "",
-   Class = "ﴯ",
-   Interface = "",
-   Module = "",
-   Property = "ﰠ",
-   Unit = "塞",
-   Value = "",
-   Enum = "",
-   Keyword = "",
-   Snippet = "",
-   Color = "",
-   File = "",
-   Reference = "",
-   Folder = "",
-   EnumMember = "",
-   Constant = "",
-   Struct = "פּ",
-   Event = "",
-   Operator = "",
-   TypeParameter = "",
+  Text = "",
+  Method = "",
+  Function = "",
+  Constructor = "",
+  Field = "ﰠ",
+  Variable = "",
+  Class = "ﴯ",
+  Interface = "",
+  Module = "",
+  Property = "ﰠ",
+  Unit = "塞",
+  Value = "",
+  Enum = "",
+  Keyword = "",
+  Snippet = "",
+  Color = "",
+  File = "",
+  Reference = "",
+  Folder = "",
+  EnumMember = "",
+  Constant = "",
+  Struct = "פּ",
+  Event = "",
+  Operator = "",
+  TypeParameter = "",
 }
 
 cmp.setup({
-    snippet = {
-      expand = function(args)
-        require("luasnip").lsp_expand(args.body)
-      end,
-    },
-    formatting = {
-      format = function(entry, vim_item)
-        -- load lspkind icons
-        vim_item.kind = string.format("%s %s", icons[vim_item.kind], vim_item.kind)
-        vim_item.menu = ({
-          nvim_lsp = "[LSP]",
-          nvim_lua = "[Lua]",
-          buffer = "[BUF]",
-        })[entry.source.name]
+  snippet = {
+    expand = function(args)
+      require("luasnip").lsp_expand(args.body)
+    end,
+  },
+  formatting = {
+    format = function(entry, vim_item)
+      -- load lspkind icons
+      vim_item.kind = string.format("%s %s", icons[vim_item.kind], vim_item.kind)
+      vim_item.menu = ({
+        nvim_lsp = "[LSP]",
+        nvim_lua = "[Lua]",
+        buffer = "[BUF]",
+      })[entry.source.name]
 
-        return vim_item
-      end,
-    },
-    completion = {
-      completeopt = "menu,menuone,noselect",
-    },
-    sources = {
-      { name = "nvim_lsp" },
-      { name = "luasnip" },
-      { name = "buffer" },
-      { name = "path" },
-    },
-    mapping = mapping,
+      return vim_item
+    end,
+  },
+  completion = {
+    completeopt = "menu,menuone,noselect",
+  },
+  sources = {
+    { name = "nvim_lsp" },
+    { name = "luasnip" },
+    { name = "buffer" },
+    { name = "path" },
+  },
+  mapping = mapping,
 })
-

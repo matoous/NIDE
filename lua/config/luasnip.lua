@@ -5,4 +5,3 @@ luasnip.snippets = {
   typescript = {},
   javascript = {},
 }
-

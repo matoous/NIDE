@@ -1,5 +1,5 @@
 local icons = require("nvim-nonicons")
-require"trouble".setup {
+require("trouble").setup({
   signs = {
     error = icons.get("x-circle"),
     warning = icons.get("alert"),
@@ -7,5 +7,4 @@ require"trouble".setup {
     hint = icons.get("comment"),
     other = icons.get("circle"),
   },
-}
-
+})

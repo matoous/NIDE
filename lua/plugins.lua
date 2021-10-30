@@ -1,9 +1,9 @@
 local fn = vim.fn
-local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
+local install_path = fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
 
 if fn.empty(fn.glob(install_path)) > 0 then
-  fn.system({'git', 'clone', 'https://github.com/wbthomason/packer.nvim', install_path})
-  vim.cmd 'packadd packer.nvim'
+  fn.system({ "git", "clone", "https://github.com/wbthomason/packer.nvim", install_path })
+  vim.cmd("packadd packer.nvim")
 end
 
 require("packer").startup(function(use)
@@ -29,19 +29,19 @@ require("packer").startup(function(use)
           gitsigns = true,
           telescope = true,
           nvimtree = {
-              enabled = true,
-              show_root = true,
+            enabled = true,
+            show_root = true,
           },
           which_key = true,
           bufferline = true,
-        }
+        },
       })
       cp.load()
     end,
   })
   -- https://github.com/bluz71/vim-moonfly-colors
   use({
-    "bluz71/vim-moonfly-colors"
+    "bluz71/vim-moonfly-colors",
   })
 
   -- Top bar with currently open buffers
@@ -169,10 +169,10 @@ require("packer").startup(function(use)
   -- Toggle comments
   -- https://github.com/b3nj5m1n/kommentary
   use({
-      "b3nj5m1n/kommentary",
-      event = { "BufReadPre", "BufNewFile" },
-      opt = true,
-      keys = { "gc", "gcc" },
+    "b3nj5m1n/kommentary",
+    event = { "BufReadPre", "BufNewFile" },
+    opt = true,
+    keys = { "gc", "gcc" },
   })
 
   -- Utils
@@ -199,7 +199,12 @@ require("packer").startup(function(use)
     "wellle/targets.vim",
     -- Autosave, but in lua and better than the classic one
     -- https://github.com/Pocco81/AutoSave.nvim
-    { "Pocco81/AutoSave.nvim", config = function() require("autosave").setup() end },
+    {
+      "Pocco81/AutoSave.nvim",
+      config = function()
+        require("autosave").setup()
+      end,
+    },
     -- Search and replace accross multiple files
     -- https://github.com/brooth/far.vim
     "brooth/far.vim",
@@ -216,8 +221,8 @@ require("packer").startup(function(use)
   use({
     "karb94/neoscroll.nvim",
     config = function()
-      require('neoscroll').setup({})
-      require('neoscroll.config').set_mappings({
+      require("neoscroll").setup({})
+      require("neoscroll.config").set_mappings({
         ["<C-u>"] = { "scroll", { "-vim.wo.scroll", "true", "80" } },
         ["<C-d>"] = { "scroll", { "vim.wo.scroll", "true", "80" } },
       })
@@ -235,7 +240,7 @@ require("packer").startup(function(use)
     cmd = { "TodoTelescope", "TodoTrouble", "TodoQuickFix" },
     config = function()
       require("todo-comments").setup({})
-    end
+    end,
   })
 
   -- Tree file explorer
@@ -312,7 +317,7 @@ require("packer").startup(function(use)
       {
         "L3MON4D3/LuaSnip",
         requires = {
-          'saadparwaiz1/cmp_luasnip',
+          "saadparwaiz1/cmp_luasnip",
           "rafamadriz/friendly-snippets",
         },
         config = function()
@@ -323,23 +328,22 @@ require("packer").startup(function(use)
         -- Icons for completions
         "onsails/lspkind-nvim",
         config = function()
-          require('lspkind').init()
+          require("lspkind").init()
         end,
       },
     },
   })
 
   use({
-    "github/copilot.vim"
+    "github/copilot.vim",
   })
 
   -- Languages
-  use "google/vim-jsonnet"
-  use "tsandall/vim-rego"
-  use "ledger/vim-ledger"
-  use "cespare/vim-toml"
+  use("google/vim-jsonnet")
+  use("tsandall/vim-rego")
+  use("ledger/vim-ledger")
+  use("cespare/vim-toml")
 end)
-
 
 -- disable git blamme by default
 vim.g.gitblame_enabled = 0

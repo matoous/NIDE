@@ -31,7 +31,10 @@ wk.register({
     },
   },
   g = {
-    x = { '<Cmd>call jobstart(["open", expand("<cfile>")], {"detach": v:true})<CR>', "Open urel under cursor in browser"},
+    x = {
+      '<Cmd>call jobstart(["open", expand("<cfile>")], {"detach": v:true})<CR>',
+      "Open urel under cursor in browser",
+    },
   },
   ["<C-k>"] = { ":wincmd k<CR>", "Focus pane to the top" },
   ["<A-TAB>"] = { "<Cmd>BufferNext<CR>", "Next buffer tab" },
@@ -47,6 +50,5 @@ local disable_keys = {
   ["<Left>"] = { "<Nop>", "which_key_ignore" },
   ["<Right>"] = { "<Nop>", "which_key_ignore" },
 }
-wk.register(disable_keys, { mode = 'n', silent = true })
-wk.register(disable_keys, { mode = 'i', silent = true })
-
+wk.register(disable_keys, { mode = "n", silent = true })
+wk.register(disable_keys, { mode = "i", silent = true })
