@@ -2,8 +2,12 @@ local icons = require("nvim-nonicons")
 local nvim_lsp = require("lspconfig")
 local wk = require("which-key")
 local lspinstall = require("lspinstall")
+local configs = require('lspconfig/configs')
+local util = require('lspconfig/util')
 
-vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = "single" })
+local path = util.path
+
+-- vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = "single" })
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
@@ -41,15 +45,15 @@ local on_attach = function(client, bufnr)
     ["<leader>"] = {
       s = {
         name = "Show",
-        f = {"<cmd>lua require('lspsaga.provider').lsp_finder()<CR>", "Show finder for current symbol"},
-        a = {"<cmd>lua require('lspsaga.codeaction').code_action()<CR>", "Show code actions"},
-        p = {"<cmd>lua require('lspsaga.provider').preview_definition()<CR>", "Show preview of definition"},
+        f = {"<cmd>Telescope lsp_workspace_symbols<CR>", "Show finder for current symbol"},
+        a = {"<cmd>Telescope lsp_code_actions<CR>", "Show code actions"},
+        p = {"<cmd>Telescope lsp_definitions<CR>", "Show preview of definition"},
         e = {'<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', "Show errors"},
         d = {'<cmd>lua vim.lsp.buf.type_definition()<CR>', "Show type definition"},
       },
       m = {
         name = "Make",
-        r = {"<cmd>lua require('lspsaga.rename').rename()<CR>", "Rename symbol"},
+        r = {"<cmd>lua vim.lsp.buf.rename()<CR>", "Rename symbol"},
         f = {"<cmd>lua vim.lsp.buf.formatting()<CR>", "Format code"},
       },
     },
@@ -59,6 +63,24 @@ local on_attach = function(client, bufnr)
   -- buf_set_keymap('n', '[d', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
   -- buf_set_keymap('n', ']d', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
   vim.notify(client.name .. ": attached LSP server", "info")
+end
+
+local function get_python_path(workspace)
+  -- Use activated virtualenv.
+  if vim.env.VIRTUAL_ENV then
+    return path.join(vim.env.VIRTUAL_ENV, 'bin', 'python')
+  end
+
+  -- Find and use virtualenv in workspace directory.
+  for _, pattern in ipairs({'*', '.*'}) do
+    local match = vim.fn.glob(path.join(workspace, pattern, 'pyvenv.cfg'))
+    if match ~= '' then
+      return path.join(path.dirname(match), 'bin', 'python')
+    end
+  end
+
+  -- Fallback to system Python.
+  return exepath('python3') or exepath('python') or 'python'
 end
 
 lspinstall.setup()

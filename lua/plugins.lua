@@ -39,6 +39,10 @@ require("packer").startup(function(use)
       cp.load()
     end,
   })
+  -- https://github.com/bluz71/vim-moonfly-colors
+  use({
+    "bluz71/vim-moonfly-colors"
+  })
 
   -- Top bar with currently open buffers
   -- https://github.com/romgrk/jarbar.nvim
@@ -279,12 +283,12 @@ require("packer").startup(function(use)
 
   -- Cool popup windows for certain LSP features (definitions, references, etc.), currently in development
   -- https://github.com/glepnir/lspsaga.nvim
-  use({
+  --[[ use({
     "glepnir/lspsaga.nvim",
     config = function()
       require("config.lspsaga")
     end,
-  })
+  }) ]]
 
   -- Completion
   -- https://github.com/hrsh7th/nvim-cmp
@@ -323,6 +327,10 @@ require("packer").startup(function(use)
         end,
       },
     },
+  })
+
+  use({
+    "github/copilot.vim"
   })
 
   -- Languages

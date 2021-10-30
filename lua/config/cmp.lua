@@ -1,7 +1,6 @@
-local wk = require("which-key")
 local cmp = require("cmp")
 local luasnip = require("luasnip")
-local npairs = require("nvim-autopairs.completion.cmp")
+local cmp_autopairs = require('nvim-autopairs.completion.cmp')
 
 local check_back_space = function()
   local col = vim.fn.col "." - 1
@@ -12,26 +11,33 @@ local t = function(str)
   return vim.api.nvim_replace_termcodes(str, true, true, true)
 end
 
+cmp.event:on( 'confirm_done', cmp_autopairs.on_confirm_done({  map_char = { tex = '' } }))
+
 -- supertab-like mapping
 local mapping = {
   ["<CR>"] = cmp.mapping.confirm(),
   ["<Tab>"] = cmp.mapping(function(fallback)
-    if vim.fn.pumvisible() == 1 then
-      vim.fn.feedkeys(t("<C-n>"), "n")
+    if cmp.visible() then
+      cmp.select_next_item()
     elseif luasnip.expand_or_jumpable() then
       vim.fn.feedkeys(t("<Plug>luasnip-expand-or-jump"), "")
     elseif check_back_space() then
       vim.fn.feedkeys(t("<Tab>"), "n")
     else
-      fallback()
+      local copilot_keys = vim.fn["copilot#Accept"]()
+      if copilot_keys ~= "" then
+          vim.api.nvim_feedkeys(copilot_keys, "i", true)
+      else
+          fallback()
+      end
     end
   end, {
     "i",
     "s",
   }),
   ["<S-Tab>"] = cmp.mapping(function(fallback)
-    if vim.fn.pumvisible() == 1 then
-      vim.fn.feedkeys(t("<C-p>"), "n")
+    if cmp.visible() then
+      cmp.select_prev_item()
     elseif luasnip.jumpable(-1) then
       vim.fn.feedkeys(t("<Plug>luasnip-jump-prev"), "")
     else
@@ -102,8 +108,3 @@ cmp.setup({
     mapping = mapping,
 })
 
-npairs.setup({
-  map_cr = true,
-  map_complete = true,
-  auto_select = true,
-})
