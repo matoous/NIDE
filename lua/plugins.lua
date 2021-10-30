@@ -334,6 +334,14 @@ require("packer").startup(function(use)
     },
   })
 
+  -- Lsp Signature as you type
+  -- https://github.com/ray-x/lsp_signature.nvim
+  use({
+    "ray-x/lsp_signature.nvim",
+  })
+
+  -- GitHub copilot in nvim
+  -- https://github.com/github/copilot.vim
   use({
     "github/copilot.vim",
   })

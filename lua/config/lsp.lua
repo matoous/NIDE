@@ -29,6 +29,7 @@ vim.fn.sign_define("LspDiagnosticsSignInformation", { text = "", texthl = "Ls
 -- after the language server attaches to the current buffer
 local on_attach = function(client, bufnr)
   require("illuminate").on_attach(client)
+  require("lsp_signature").on_attach()
   -- See `:help vim.lsp.*` for documentation on any of the below functions
   wk.register({
     g = {
