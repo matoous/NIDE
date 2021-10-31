@@ -170,6 +170,12 @@ require("packer").startup(function(use)
     cmd = "GitBlameToggle",
   })
 
+  -- Browse commits for given line
+  -- https://github.com/rhysd/git-messenger.vim
+  use({
+    "rhysd/git-messenger.vim",
+  })
+
   -- Toggle comments
   -- https://github.com/b3nj5m1n/kommentary
   use({

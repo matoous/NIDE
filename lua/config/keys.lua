@@ -17,6 +17,7 @@ wk.register({
       r = { "<cmd>TroubleToggle<CR>", "Toggle trouble" },
       s = { ":setlocal spell!<CR>", "Toggle spell check" },
       t = { "<cmd>NvimTreeToggle<CR>", "Toggle tree" },
+      g = { ":GitMessenger<CR>", "Toggle git messenger" },
     },
     f = {
       name = "Find stuff",

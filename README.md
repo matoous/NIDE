@@ -29,9 +29,6 @@ switching from material theme `dark_catppuccino` might be more to your liking.
 
 - Consider using https://github.com/kristijanhusak/vim-dadbod-ui for database access.
 - https://github.com/pechorin/any-jump.vim
-- https://github.com/ray-x/navigator.lua
-- https://github.com/liuchengxu/vista.vim - vim lsp symbols navigator
-- https://github.com/voldikss/vim-floaterm
 - https://github.com/kosayoda/nvim-lightbulb - lightbulb in sign column for lsp code actions
 
 ## Plugins to watch
