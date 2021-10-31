@@ -37,7 +37,6 @@ switching from material theme `dark_catppuccino` might be more to your liking.
 - https://github.com/liuchengxu/vista.vim - vim lsp symbols navigator
 - https://github.com/voldikss/vim-floaterm
 - https://github.com/kosayoda/nvim-lightbulb - lightbulb in sign column for lsp code actions
-- https://github.com/p00f/nvim-ts-rainbow - rainbow parantheses using treesitter
 
 ## Plugins to watch
 
