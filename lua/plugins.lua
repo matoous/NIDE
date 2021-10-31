@@ -341,7 +341,14 @@ require("packer").startup(function(use)
     "github/copilot.vim",
   })
 
-  use()
+  -- Jumps to search terms in non-intrusive way
+  -- https://github.com/nacro90/numb.nvim
+  use({
+    "nacro90/numb.nvim",
+    config = function()
+      require("numb").setup()
+    end,
+  })
 
   -- Languages
   use("google/vim-jsonnet")

@@ -28,10 +28,6 @@ switching from material theme `dark_catppuccino` might be more to your liking.
 ## TODO
 
 - Consider using https://github.com/kristijanhusak/vim-dadbod-ui for database access.
-- https://github.com/ray-x/lsp_signature.nvim
-- https://github.com/nvim-telescope/telescope-fzf-native.nvim
-- https://github.com/sudormrfbin/cheatsheet.nvim
-- https://github.com/nacro90/numb.nvim
 - https://github.com/pechorin/any-jump.vim
 - https://github.com/ray-x/navigator.lua
 - https://github.com/liuchengxu/vista.vim - vim lsp symbols navigator
