@@ -142,7 +142,11 @@ require("packer").startup(function(use)
   use({
     "nvim-telescope/telescope.nvim",
     cmd = "Telescope",
-    requires = { "nvim-lua/popup.nvim", "nvim-lua/plenary.nvim" },
+    requires = {
+      "nvim-lua/popup.nvim",
+      "nvim-lua/plenary.nvim",
+      { "nvim-telescope/telescope-fzf-native.nvim", run = "make" },
+    },
     config = function()
       require("config.telescope")
     end,
@@ -336,6 +340,8 @@ require("packer").startup(function(use)
   use({
     "github/copilot.vim",
   })
+
+  use()
 
   -- Languages
   use("google/vim-jsonnet")
