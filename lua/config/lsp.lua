@@ -1,7 +1,7 @@
 local icons = require("nvim-nonicons")
 local nvim_lsp = require("lspconfig")
 local wk = require("which-key")
-local lspinstall = require("lspinstall")
+local lsp_installer = require("nvim-lsp-installer")
 local configs = require("lspconfig/configs")
 local util = require("lspconfig/util")
 
@@ -63,39 +63,15 @@ local on_attach = function(client, bufnr)
     silent = true,
   })
 
-  -- buf_set_keymap('n', '<space>wl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', opts)
-  -- buf_set_keymap('n', '[d', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
-  -- buf_set_keymap('n', ']d', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
   vim.notify(client.name .. ": attached LSP server", "info")
 end
 
-local function get_python_path(workspace)
-  -- Use activated virtualenv.
-  if vim.env.VIRTUAL_ENV then
-    return path.join(vim.env.VIRTUAL_ENV, "bin", "python")
-  end
-
-  -- Find and use virtualenv in workspace directory.
-  for _, pattern in ipairs({ "*", ".*" }) do
-    local match = vim.fn.glob(path.join(workspace, pattern, "pyvenv.cfg"))
-    if match ~= "" then
-      return path.join(path.dirname(match), "bin", "python")
-    end
-  end
-
-  -- Fallback to system Python.
-  return exepath("python3") or exepath("python") or "python"
-end
-
-lspinstall.setup()
-local servers = lspinstall.installed_servers()
-
-for _, server in ipairs(servers) do
-  nvim_lsp[server].setup({
+lsp_installer.on_server_ready(function(server)
+  server:setup({
     on_attach = on_attach,
     capabilities = capabilities,
     flags = {
       debounce_text_changes = 150,
     },
   })
-end
+end)

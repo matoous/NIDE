@@ -70,7 +70,9 @@ require("packer").startup(function(use)
   use({
     "neovim/nvim-lspconfig",
     requires = {
-      "kabouzeid/nvim-lspinstall",
+      -- installer for LSP servers
+      -- https://github.com/williamboman/nvim-lsp-installer
+      "williamboman/nvim-lsp-installer",
     },
     event = "BufReadPre",
     config = function()
@@ -174,6 +176,9 @@ require("packer").startup(function(use)
   -- https://github.com/rhysd/git-messenger.vim
   use({
     "rhysd/git-messenger.vim",
+    event = { "BufReadPre", "BufNewFile" },
+    opt = true,
+    cmd = "GitMessenger",
   })
 
   -- Toggle comments
