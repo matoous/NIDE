@@ -18,7 +18,7 @@ require("packer").startup(function(use)
   -- https://github.com/Pocco81/Catppuccino.nvim
   use({
     "catppuccin/nvim",
-    branch = 'old-catppuccino',
+    branch = "old-catppuccino",
     config = function()
       local cp = require("catppuccino")
       cp.setup({
