@@ -35,7 +35,7 @@ wk.register({
   g = {
     x = {
       '<Cmd>call jobstart(["open", expand("<cfile>")], {"detach": v:true})<CR>',
-      "Open urel under cursor in browser",
+      "Open url under cursor in browser",
     },
   },
   ["<C-k>"] = { ":wincmd k<CR>", "Focus pane to the top" },
