@@ -31,14 +31,14 @@ require("lualine").setup({
       {
         "encoding",
         -- show encoding only if not utf-8
-        condition = function()
-          return vim.bo.fileencoding and #vim.bo.fileencoding > 0 and vim.bo.fileencoding ~= "utf-8"
+        cond = function()
+          return vim.bo.fileencoding ~= "utf-8"
         end,
       },
       {
         "fileformat",
         -- show fileformat only if not unix
-        condition = function()
+        cond = function()
           return vim.bo.fileformat ~= "unix"
         end,
         icons_enabled = false,
