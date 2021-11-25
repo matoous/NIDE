@@ -17,12 +17,14 @@ require("packer").startup(function(use)
   -- Theme
   -- https://github.com/Pocco81/Catppuccino.nvim
   use({
-    "Pocco81/Catppuccino.nvim",
+    "catppuccin/nvim",
+    branch = 'old-catppuccino',
     config = function()
       local cp = require("catppuccino")
       cp.setup({
         colorscheme = "neon_latte", -- or "catpuccino", or "light_melya"
         integrations = {
+          treesitter = true,
           native_lsp = { enabled = true },
           lsp_trouble = true,
           lsp_saga = true,
@@ -33,6 +35,8 @@ require("packer").startup(function(use)
             show_root = true,
           },
           which_key = true,
+          fern = true,
+          barbar = true,
           bufferline = true,
         },
       })
