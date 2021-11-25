@@ -44,9 +44,9 @@ local on_attach = function(client, bufnr)
     ["<leader>"] = {
       s = {
         name = "Show",
-        f = { "<cmd>Telescope lsp_workspace_symbols<CR>", "Show finder for current symbol" },
-        a = { "<cmd>Telescope lsp_code_actions<CR>", "Show code actions" },
-        p = { "<cmd>Telescope lsp_definitions<CR>", "Show preview of definition" },
+        f = { "<cmd>Telescope lsp_workspace_symbols theme=cursor<CR>", "Show finder for current symbol" },
+        a = { "<cmd>Telescope lsp_code_actions theme=cursor<CR>", "Show code actions" },
+        p = { "<cmd>Telescope lsp_definitions theme=cursor<CR>", "Show preview of definition" },
         e = { "<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>", "Show errors" },
         d = { "<cmd>lua vim.lsp.buf.type_definition()<CR>", "Show type definition" },
       },
