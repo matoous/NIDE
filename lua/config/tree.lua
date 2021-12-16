@@ -28,9 +28,9 @@ vim.g.nvim_tree_icons = {
     error = "",
   },
 }
-vim.g.nvim_tree_group_empty = 1
-vim.g.nvim_tree_highlight_opened_files = 1
-vim.g.nvim_tree_ignore = { ".git", "node_modules", "__pycache__", ".idea", "venv" }
+vim.g.group_empty = 1
+vim.g.highlight_opened_files = 1
+vim.g.ignore = { ".git", "node_modules", "__pycache__", ".idea", "venv" }
 
 require("nvim-tree").setup({
   open_on_setup = true,
@@ -40,6 +40,3 @@ require("nvim-tree").setup({
     auto_resize = true,
   },
 })
-require("nvim-tree.events").on_nvim_tree_ready(function()
-  vim.cmd("NvimTreeRefresh")
-end)

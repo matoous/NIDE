@@ -43,10 +43,6 @@ require("packer").startup(function(use)
       cp.load()
     end,
   })
-  -- https://github.com/bluz71/vim-moonfly-colors
-  use({
-    "bluz71/vim-moonfly-colors",
-  })
 
   -- Top bar with currently open buffers
   -- https://github.com/romgrk/jarbar.nvim
@@ -123,23 +119,8 @@ require("packer").startup(function(use)
   -- https://github.com/hoob3rt/lualine.nvim
   use({
     "hoob3rt/lualine.nvim",
-    requires = {
-      -- lsp diagnostics status in lualine
-      -- https://github.com/nvim-lua/lsp-status.nvim
-      "nvim-lua/lsp-status.nvim",
-    },
     config = function()
       require("config.lualine")
-    end,
-  })
-
-  -- Open terminal window from within vim
-  -- https://github.com/akinsho/toggleterm.nvim
-  use({
-    "akinsho/nvim-toggleterm.lua",
-    event = "BufWinEnter",
-    config = function()
-      require("config.toggleterm")
     end,
   })
 
@@ -235,33 +216,6 @@ require("packer").startup(function(use)
     },
   })
 
-  -- Smooth scroll
-  -- https://github.com/karb94/neoscroll.nvim
-  use({
-    "karb94/neoscroll.nvim",
-    config = function()
-      require("neoscroll").setup({})
-      require("neoscroll.config").set_mappings({
-        ["<C-u>"] = { "scroll", { "-vim.wo.scroll", "true", "80" } },
-        ["<C-d>"] = { "scroll", { "vim.wo.scroll", "true", "80" } },
-      })
-    end,
-    opt = true,
-    keys = { "<C-u>", "<C-d>" },
-  })
-
-  -- Find key-word comments such as todo and fixme and display them in quickfic, telescope, and trouble
-  -- https://github.com/folke/todo-comments.nvim
-  use({
-    "folke/todo-comments.nvim",
-    requires = { "nvim-lua/plenary.nvim", "nvim-telescope/telescope.nvim", "folke/lsp-trouble.nvim" },
-    event = { "BufRead" },
-    cmd = { "TodoTelescope", "TodoTrouble", "TodoQuickFix" },
-    config = function()
-      require("todo-comments").setup({})
-    end,
-  })
-
   -- Tree file explorer
   -- https://github.com/kyazdani42/nvim-tree.lua
   use({
@@ -320,6 +274,7 @@ require("packer").startup(function(use)
       "friendly-snippets",
     },
     requires = {
+      { "hrsh7th/cmp-copilot", after= "nvim-cmp"},
       { "hrsh7th/cmp-buffer", after = "nvim-cmp" },
       { "hrsh7th/cmp-nvim-lsp", after = "nvim-cmp" },
       { "hrsh7th/cmp-path", after = "nvim-cmp" },
@@ -356,15 +311,6 @@ require("packer").startup(function(use)
     "github/copilot.vim",
   })
 
-  -- Jumps to search terms in non-intrusive way
-  -- https://github.com/nacro90/numb.nvim
-  use({
-    "nacro90/numb.nvim",
-    config = function()
-      require("numb").setup()
-    end,
-  })
-
   -- Languages
   use("google/vim-jsonnet")
   use("tsandall/vim-rego")
@@ -374,3 +320,4 @@ end)
 
 -- disable git blamme by default
 vim.g.gitblame_enabled = 0
+vim.g.copilot_enabled = 1
